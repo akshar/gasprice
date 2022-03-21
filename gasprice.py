@@ -1,3 +1,4 @@
+
 import os
 import click
 import logging
@@ -8,6 +9,7 @@ from collections import deque
 from statistics import mean
 from itertools import chain
 from web3 import Web3, HTTPProvider
+from web3.middleware import geth_poa_middleware
 from sanic import Sanic, response
 from retry import retry
 
@@ -18,8 +20,11 @@ WINDOW = 200
 
 
 w3 = Web3(HTTPProvider(ETH_RPC_URL))
+w3.middleware_stack.inject(geth_poa_middleware, layer=0)
+
 app = Sanic()
 log = logging.getLogger('sanic.error')
+
 app.config.LOGO = ''
 block_times = deque(maxlen=WINDOW)
 blocks_gwei = deque(maxlen=WINDOW)

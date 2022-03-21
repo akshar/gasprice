@@ -12,8 +12,10 @@ python = "^3.6"
 sanic = "^19.3"
 web3 = "^4.9"
 pandas = "^0.24.2"
+numpy = "1.17.4"
 click = "^7.0"
 retry = "^0.9.2"
+uvloop = "0.14.0"
 
 [tool.poetry.scripts]
 gasprice = "gasprice:main"
