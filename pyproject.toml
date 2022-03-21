@@ -10,7 +10,7 @@ readme = "readme.md"
 [tool.poetry.dependencies]
 python = "^3.6"
 sanic = "^19.3"
-web3 = "^4.9"
+web3 = "5.0.0"
 pandas = "^0.24.2"
 numpy = "1.17.4"
 click = "^7.0"
