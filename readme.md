@@ -2,32 +2,6 @@
 
 estimates ethereum gas price based on recent blocks and provides a simple api
 
-## hosted
-
-- https://gasprice.poa.network (kindly deployed by [poa network](https://poa.network))
-
-## installation
-
-requires python 3.6 and an ethereum full node. infura.io won't work as it doesn't allow setting up `filter`.
-
-```bash
-pip install gasprice
-```
-
-there is an example of systemd service if you want to run it as a service.
-
-## usage
-
-```bash
-gasprice
-
-Options:
-  -h, --host 127.0.0.1
-  -p, --port 8000
-  -s, --skip-warmup
-```
-
-ethereum rpc url can be set with `ETH_RPC_URL` environment variable (default `http://localhost:8545`).
 
 ## api
 
