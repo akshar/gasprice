@@ -17,7 +17,8 @@ from retry import retry
 
 ETH_RPC_URL = os.environ.get('ETH_RPC_URL', 'http://localhost:8545')
 QUANTILES = dict(slow=35, standard=60, fast=90, instant=100)
-WINDOW = 200
+WINDOW = int(os.environ.get('WINDOW', '200'))
+POLL_RATE = int(os.environ.get('POLL_RATE', '5'))
 
 
 w3 = Web3(HTTPProvider(ETH_RPC_URL))
@@ -33,7 +34,7 @@ blocks_gwei = deque(maxlen=WINDOW)
 stats = {}
 
 
-@retry(Exception, delay=1, logger=log)
+@retry(Exception, delay=POLL_RATE, logger=log)
 def worker(skip_warmup):
     stats['health'] = False
     latest = w3.eth.filter('latest')
@@ -47,7 +48,7 @@ def worker(skip_warmup):
             log.info(str(stats))
         if not w3.eth.syncing:
             stats['health'] = True
-        sleep(1)
+        sleep(POLL_RATE)
 
 
 def warmup():
