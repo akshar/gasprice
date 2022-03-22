@@ -44,3 +44,16 @@ ethereum rpc url can be set with `ETH_RPC_URL` environment variable (default `ht
 ```
 
 `slow`, `standard`, `fast` and `instant` values represent minimal gas price of the latest 200 blocks. by default slow represents 30% probability, standard is 60%, fast is 90% and instant is 100%.
+
+
+## Docker build:
+
+ ```
+ docker build -t gasprice:latest .
+ ```
+
+ ## Docker run:
+
+ ```
+docker run -it -d -p 8080:8080  -e "ETH_RPC_URL=<rpc-url>" -e "WINDOW=200" -e "POLL_RATE=4" gasprice:latest
+```
